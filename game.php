@@ -13,11 +13,9 @@
     // game logic 
     $player = isset($_POST["player"]) ? $_POST["player"] : 4;
     $rps_array = ["Rock", "Paper", "Scissors"];
-    $computer = "";
+    $computer = rand(0,2);
 
-    function check($player) {
-        global $computer;
-        $computer = rand(0,2);
+    function check($player, $computer) {
         if ($player == 0) {
             if ($computer == 0) {
                 return "Tie";
@@ -47,7 +45,7 @@
         }
     }
 
-    $result = check($player);
+    $result = check($player, $computer);
 
 ?>
 
@@ -73,14 +71,21 @@
         <input type="submit" value="Play">
         <input type="submit" name="cancel" value="Lougout">
         </form>
-        <p>
+        <pre>
             <?php
             if ($player == 4) {
                 print "Please select a strategy and press Play.";
+            } else if ($player == 3) {
+                for($c=0;$c<3;$c++) {
+                    for($h=0;$h<3;$h++) {
+                        $r = check($c, $h);
+                        print "Player=$rps_array[$c] Computer=$rps_array[$h] Result=$r\n";
+                    }
+                }
             } else {
                 print "Your play=$rps_array[$player] Computer's play=$rps_array[$computer] Result=$result \n";
             }
             ?>
-        </p>
+        </pre>
     </body>
 </html>
