@@ -4,9 +4,19 @@
         return;
     }
 
+    $salt = 'XyZzy12*_';
+    $stored_hash = '1a52e17fa899cf40fb04cfc42e6352f1';
+    $message = "";
+
     if ( isset($_POST['who']) && isset($_POST["pass"])) {
-        if () {
-            
+        if ( strlen($_POST["who"]) < 1 || strlen($_POST["pass"]) < 1) {
+            $message = "User name and password are required";
+        } else {
+            if ( $stored_hash == hash('md5', $salt.$_POST["pass"])) {
+                header("Location: game.php?name=".urlencode($_POST["who"]));
+            } else {
+                $message = "Incorrect Password";
+            }
         }
     }
 ?>
@@ -19,6 +29,11 @@
     </head>
     <body>
         <h1>Please Log In</h1>
+        <?php
+            if ( $message !== "" ) {
+                echo("<h3> $message </h3>");
+            }
+        ?>
         <form method="POST">
             <label for="name">User Name</label>
             <input type="text" name="who" id="name">
