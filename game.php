@@ -1,4 +1,7 @@
 <?php
+    if ( !isset($_GET["name"]) ) {
+        die('Name parameter missing');
+    }
     if ( isset($_POST['cancel'])) {
         header('Location: index.php');
         return;
