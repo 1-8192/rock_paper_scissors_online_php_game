@@ -1,11 +1,18 @@
 <?php
+    // error message if no user name 
     if ( !isset($_GET["name"]) ) {
         die('Name parameter missing');
     }
+
+    // redirect to index page on Log out click
     if ( isset($_POST['cancel'])) {
         header('Location: index.php');
         return;
     }
+
+    // game logic 
+    $player = isset($_POST["player"]) ? $_POST["player"] : null;
+
 ?>
 
 <!DOCTYPE html>
@@ -16,9 +23,9 @@
     </head>
     <body>
         <h1>Rock Paper Scissors</h1>
-        <p>Welcome: name </p>
+        <p>Welcome: <?= $_GET["name"] ?> </p>
         <form method="POST">
-        <select name="">
+        <select name="player">
         <option value="0">Select</option>
         <option value="1">Rock</option>
         <option value="2">Paper</option>
