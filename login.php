@@ -1,3 +1,16 @@
+<?php
+    if ( isset($_POST['cancel'])) {
+        header("Location: index.php");
+        return;
+    }
+
+    if ( isset($_POST['who']) && isset($_POST["pass"])) {
+        if () {
+            
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
